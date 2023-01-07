@@ -1,0 +1,27 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: kitty-producer
+  cloud:
+    consul:
+      #host: localhost
+      host: 192.168.2.110
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name}	# 注册到consul的服务名称
+  boot:
+    admin:
+      client:
+#        url: "http://localhost:8000"
+        url: "http://192.168.2.110:8000"
+
+# 开放健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

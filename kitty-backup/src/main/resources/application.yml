@@ -1,0 +1,37 @@
+# tomcat
+server:
+  port: 8002
+# spring boot admin
+spring:
+  application:
+    name: kitty-backup
+  cloud:
+    consul:
+      #host: localhost
+      host: 192.168.2.110
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name}	# 注册到consul的服务名称
+  boot:
+    admin:
+      client:
+        #url: "http://localhost:8000"
+      url: "http://192.168.2.110:8000"
+# 开放健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+# backup datasource
+kitty:
+  backup:
+    datasource:
+      #host: localhost
+      host: 192.168.2.110
+      userName: root
+      password: 123456
+      database: kitty
